@@ -1,6 +1,6 @@
 <template>
   <div class="protocols">
-    <h1>📋 Protocoles de laboratoire</h1>
+    <h1>Protocoles de laboratoire</h1>
     <div v-if="protocols.length === 0">Aucun protocole disponible.</div>
     <ul v-else>
       <li v-for="protocol in sortedProtocols" :key="protocol.id" class="protocol-item">
@@ -52,8 +52,10 @@ function formatDate(dateStr) {
 }
 
 h1 {
-  font-size: 1.8rem;
-  margin-bottom: 2rem;
+  font-size: 2rem; 
+  font-weight: bold;
+  margin-bottom: 1.8rem;
+  margin-left: -8rem;
   text-align: center;
 }
 

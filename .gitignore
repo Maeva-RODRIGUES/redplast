@@ -7,3 +7,6 @@ __pycache__/
 .qodo
 .vscode
 .env
+*.sqlite3
+*.db
+db.sqlite3

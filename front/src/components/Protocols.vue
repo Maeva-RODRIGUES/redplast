@@ -1,116 +1,104 @@
 <template>
-  <div class="container">
-    <h1 class="title">📄 Protocoles de laboratoire</h1>
+  <div class="protocols">
+    <h1>📋 Protocoles de laboratoire</h1>
     <div v-if="protocols.length === 0">Aucun protocole disponible.</div>
-    <div v-else class="protocol-list">
-      <div v-for="protocol in sortedProtocols" :key="protocol.id" class="protocol-card">
-        <div class="protocol-header">
-          <span class="emoji">🧪</span>
-          <h2 class="protocol-title">{{ protocol.title }}</h2>
-          <span class="badge">{{ protocol.author }}</span>
+    <ul v-else>
+      <li v-for="protocol in sortedProtocols" :key="protocol.id" class="protocol-item">
+        <div class="emoji">📄</div>
+        <div class="content">
+          <h2>{{ protocol.title }}</h2>
+          <span class="author-badge">👤 {{ protocol.author }}</span>
+          <small class="date">🕒 {{ formatDate(protocol.created_at) }}</small>
+          <p>{{ protocol.description }}</p>
         </div>
-        <p class="protocol-description">{{ protocol.description }}</p>
-        <small class="protocol-date">
-          🗓️ Créé le : {{ formatDate(protocol.created_at) }}
-        </small>
-      </div>
-    </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
-import api from '@/api/axios'
-
+import axios from 'axios'
 
 const protocols = ref([])
 
-const fetchProtocols = async () => {
+onMounted(async () => {
   try {
-    const response = await api.get('protocols/')
+    const response = await axios.get('http://127.0.0.1:8000/api/protocols/')
     protocols.value = response.data
   } catch (error) {
-    console.error('Erreur lors de la récupération des protocoles :', error)
+    console.error('Erreur de récupération :', error)
   }
-}
+})
 
-const formatDate = (dateStr) => {
-  const date = new Date(dateStr)
-  return date.toLocaleDateString('fr-FR', {
+const sortedProtocols = computed(() => {
+  return [...protocols.value].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+})
+
+function formatDate(dateStr) {
+  return new Date(dateStr).toLocaleDateString('fr-FR', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
   })
 }
-
-const sortedProtocols = computed(() => {
-  return [...protocols.value].sort(
-    (a, b) => new Date(b.created_at) - new Date(a.created_at)
-  )
-})
-
-onMounted(() => {
-  fetchProtocols()
-})
 </script>
 
 <style scoped>
-.container {
+.protocols {
   max-width: 800px;
-  margin: auto;
+  margin: 0 auto;
   padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
 }
 
-.title {
-  text-align: center;
+h1 {
+  font-size: 1.8rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
-.protocol-list {
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.protocol-item {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.protocol-card {
-  background-color: #f5f5f5;
-  padding: 1.2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.protocol-header {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-
-.protocol-title {
-  flex-grow: 1;
-  font-size: 1.3rem;
-  margin: 0;
+  align-items: flex-start;
+  background: #f9f9f9;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .emoji {
-  font-size: 1.6rem;
+  font-size: 2rem;
+  margin-right: 1rem;
 }
 
-.badge {
-  background-color: #4caf50;
-  color: white;
-  padding: 0.3rem 0.6rem;
-  border-radius: 1rem;
-  font-size: 0.85rem;
+.content {
+  flex: 1;
 }
 
-.protocol-description {
-  margin: 0.8rem 0;
-  line-height: 1.5;
+h2 {
+  margin: 0 0 0.5rem;
 }
 
-.protocol-date {
-  font-size: 0.85rem;
-  color: #666;
+.author-badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1d4ed8;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.date {
+  display: block;
+  font-size: 0.75rem;
+  color: #555;
+  margin-bottom: 0.5rem;
 }
 </style>

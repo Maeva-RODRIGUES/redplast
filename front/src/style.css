@@ -1,0 +1,89 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-base-200;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-bordeaux-300 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-bordeaux-400;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  @apply transition-colors duration-200;
+}
+
+/* Custom button hover effects */
+.btn:hover {
+  transform: translateY(-1px);
+  transition: all 0.2s ease;
+}
+
+/* Card hover effects */
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* Badge animations */
+.badge {
+  @apply transition-all duration-300;
+}
+
+/* Focus styles for accessibility */
+.btn:focus,
+.card:focus {
+  @apply outline-none ring-2 ring-bordeaux-500 ring-offset-2;
+}
+
+/* Custom gradient backgrounds */
+.gradient-bordeaux {
+  background: linear-gradient(135deg, #991b1b 0%, #db2777 100%);
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive typography improvements */
+@media (max-width: 640px) {
+  .card-title {
+    @apply text-base;
+  }
+  
+  .card-body {
+    @apply p-4;
+  }
+}

@@ -1,11 +1,44 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import ProtocolList from './components/ProtocolList.vue'
 </script>
 
 <template>
-  <RouterView />
+  <div class="min-h-screen bg-gradient-to-br from-base-200 to-base-300">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-base-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex items-center space-x-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-gradient-to-br from-bordeaux-600 to-framboise-600 rounded-xl flex items-center justify-center shadow-lg">
+              <span class="text-2xl">♻️</span>
+            </div>
+            <div>
+              <h1 class="text-3xl font-bold text-neutral">
+                Red<span class="text-bordeaux-700">plast</span>
+              </h1>
+              <p class="text-sm text-neutral/70 font-medium">Université de Bordeaux</p>
+            </div>
+          </div>
+        </div>
+        <p class="mt-4 text-neutral/80 max-w-2xl">
+          Accompagner la réduction de l'usage du plastique en laboratoire de recherche
+        </p>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <ProtocolList />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-base-300 mt-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="text-center text-neutral/60 text-sm">
+          <p>&copy; 2025 Redplast - Université de Bordeaux. Projet de recherche pour la réduction du plastique en laboratoire.</p>
+          <p>Conçu avec ❤️ par Maëva Rodrigues</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
-
-<style scoped>
-
-</style>

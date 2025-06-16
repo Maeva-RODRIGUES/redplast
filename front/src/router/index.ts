@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Protocols from '@/components/Protocols.vue'
+// Make sure the path is correct and the file exists
+import ProtocolList from '../components/ProtocolList.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +9,7 @@ const router = createRouter({
     {
     path: '/',
     name: 'Protocols',
-    component: Protocols,
+    component: ProtocolList ,
   },
   ],
 })

@@ -80,13 +80,6 @@ const sortedProtocols = computed(() => {
   return [...protocols.value].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
 })
 
-function formatDate(dateStr) {
-  return new Date(dateStr).toLocaleDateString('fr-FR', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-  })
-}
 </script>
 
 <style scoped>

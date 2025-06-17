@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { format } from 'date-fns'
+import { fr } from 'date-fns/locale'
+
 interface Protocol {
   id: number
   title: string
   description: string
   author: string
-  date: string
+  created_at: string
   icon: string
   category: string
 }
@@ -13,20 +16,9 @@ defineProps<{
   protocol: Protocol
 }>()
 
-import { parse, format } from 'date-fns'
-import { fr } from 'date-fns/locale'
 
-const formatDate = (created_at: string) => {
-  if (!created_at) return 'Date inconnue'
-
-  try {
-    // Format d'entrée : "June 16, 2025, 5:06 p.m."
-    const parsed = parse(created_at, "MMMM d, yyyy, h:mm a", new Date(), { locale: fr })
-
-    return format(parsed, "dd MMMM yyyy 'à' HH:mm", { locale: fr }) // => 16 juin 2025 à 17:06
-  } catch {
-    return 'Date invalide'
-  }
+const formatDate = (created_at: string): string => {
+  return format(new Date(created_at), "dd MMMM yyyy à HH:mm", { locale: fr })
 }
 
 const getCategoryColor = (category: string) => {
@@ -96,7 +88,7 @@ const getCategoryColor = (category: string) => {
           </div>
         </div>
         <div class="text-right">
-          <p class="text-xs text-neutral/50">{{ formatDate(protocol.date) }}</p>
+          <p class="text-xs text-neutral/50">{{ formatDate(protocol.created_at) }}</p>
         </div>
       </div>
 

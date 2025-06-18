@@ -29,14 +29,14 @@
           <label class="label">
             <span class="label-text font-medium">Titre du protocole *</span>
           </label>
-          <input 
-            v-model="form.title"
-            type="text" 
-            placeholder="Ex: Protocole de collecte des déchets plastiques"
-            class="input input-bordered w-full"
-            :class="{ 'input-error': errors.title }"
-            required
-          />
+            <input 
+              v-model="form.title"
+              type="text" 
+              placeholder="Ex: Protocole de collecte des déchets plastiques"
+              class="input input-bordered w-full"
+              :class="{ 'input-error': errors.title }"
+              required
+            />
           <label v-if="errors.title" class="label">
             <span class="label-text-alt text-error">{{ errors.title }}</span>
           </label>
@@ -57,6 +57,24 @@
           <label v-if="errors.description" class="label">
             <span class="label-text-alt text-error">{{ errors.description }}</span>
           </label>
+        </div>
+
+        <!-- Auteur-->
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text font-medium">Auteur *</span>
+          </label>
+            <input 
+              v-model="form.author"
+              type="text"
+              placeholder="Ex: Dr. Claire Moreau"
+              class="input input-bordered w-full"
+              :class="{ 'input-error': errors.author }"
+              required
+            />
+            <label v-if="errors.author" class="label">
+              <span class="label-text-alt text-error">{{ errors.author }}</span>
+            </label>
         </div>
 
         <!-- Catégorie -->
@@ -144,6 +162,7 @@ import { ref, watch } from 'vue'
 import { protocolsApi } from '../api/protocolsApi'
 
 
+
 // Props
 interface Props {
   isOpen: boolean
@@ -162,7 +181,8 @@ const form = ref({
   title: '',
   description: '',
   category: '',
-  icon: '🧪'
+  icon: '🧪',
+  author: ''
 })
 
 // État de l'interface
@@ -184,7 +204,8 @@ const resetForm = () => {
     title: '',
     description: '',
     category: '',
-    icon: '🧪'
+    icon: '🧪',
+    author: ''
   }
   errors.value = {}
   successMessage.value = ''
@@ -210,6 +231,11 @@ const validateForm = () => {
   if (!form.value.category) {
     errors.value.category = 'La catégorie est obligatoire'
   }
+
+  if (!form.value.author.trim()) {
+  errors.value.author = 'Le nom de l’auteur est obligatoire'
+}
+
   
   return Object.keys(errors.value).length === 0
 }
@@ -228,10 +254,14 @@ const submitForm = async () => {
       title: form.value.title.trim(),
       description: form.value.description.trim(),
       category: form.value.category,
-      icon: form.value.icon.trim() || '🧪'
+      icon: form.value.icon.trim() || '🧪',
+      author: form.value.author.trim(),
+      date: new Date().toISOString()
     }
 
     await protocolsApi.create(dataToSend)
+    
+
     
     successMessage.value = 'Protocole créé avec succès !'
     emit('protocolCreated')

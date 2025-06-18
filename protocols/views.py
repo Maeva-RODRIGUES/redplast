@@ -12,7 +12,8 @@ class ProtocolViewSet(viewsets.ModelViewSet):
     
     def perform_create(self, serializer):
         # Associer l'utilisateur connecté comme auteur
-        serializer.save(author=self.request.user)
+        # serializer.save(author=self.request.user)
+        serializer.save()
     
     @action(detail=False, methods=['get'])
     def by_category(self, request):

@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import ProtocolList from './components/ProtocolList.vue'
 import ProtocolModal from './components/ProtocolModal.vue'
 
+
 const showModal = ref(false)
 const protocolListRef = ref()
 
@@ -57,6 +58,7 @@ const onProtocolCreated = () => {
       @close="showModal = false"
       @protocolCreated="onProtocolCreated"
     />
+     
 
     <!-- Footer -->
     <footer class="bg-white border-t border-base-300 mt-16">

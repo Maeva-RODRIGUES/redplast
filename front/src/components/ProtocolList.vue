@@ -39,9 +39,16 @@
         :key="protocol.id"
         :protocol="protocol"
        @deleted="loadProtocols"
-
+       @consult="showProtocol"
       />
     </div>
+
+    <!-- Modale de détail du protocole -->
+    <ProtocolDetailModal 
+      v-if="selectedProtocol" 
+      :protocol="selectedProtocol" 
+      @close="selectedProtocol = null" 
+    />
 
     <!-- Call to Action -->
     <div class="bg-gradient-to-r from-bordeaux-600 to-framboise-600 rounded-2xl p-8 text-white text-center shadow-xl">
@@ -59,14 +66,18 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 import ProtocolCard from './ProtocolCard.vue'
+import ProtocolDetailModal from './ProtocolDetailModal.vue'
+import { protocolsApi } from '../api/protocolsApi'
 
 const protocols = ref([])
+const selectedProtocol = ref(null)
 
 const emit = defineEmits(['protocolCreated'])
 
@@ -77,6 +88,14 @@ const loadProtocols = async () => {
   } catch (error) {
     console.error('Erreur de récupération :', error)
   }
+}
+
+
+const showProtocol = async (id) => {
+  const response = await protocolsApi.get(id)
+  selectedProtocol.value = response.data
+  // Ici = ouvrir une modal ou naviguer vers une page de détail
+
 }
 
 onMounted(loadProtocols)

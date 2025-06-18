@@ -38,6 +38,8 @@
         v-for="protocol in sortedProtocols" 
         :key="protocol.id"
         :protocol="protocol"
+       @deleted="loadProtocols"
+
       />
     </div>
 

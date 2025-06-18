@@ -1,4 +1,3 @@
-
 <template>
   <div class="space-y-8">
     <!-- Section Header -->
@@ -36,7 +35,7 @@
     <!-- Protocols Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <ProtocolCard 
-        v-for="protocol in protocols" 
+        v-for="protocol in sortedProtocols" 
         :key="protocol.id"
         :protocol="protocol"
       />
@@ -67,19 +66,25 @@ import ProtocolCard from './ProtocolCard.vue'
 
 const protocols = ref([])
 
-onMounted(async () => {
+const emit = defineEmits(['protocolCreated'])
+
+const loadProtocols = async () => {
   try {
     const response = await axios.get('http://127.0.0.1:8000/api/protocols/')
     protocols.value = response.data
   } catch (error) {
     console.error('Erreur de récupération :', error)
   }
-})
+}
+
+onMounted(loadProtocols)
+
+// Permet au parent de forcer le refresh si besoin
+defineExpose({ loadProtocols })
 
 const sortedProtocols = computed(() => {
   return [...protocols.value].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
 })
-
 </script>
 
 <style scoped>

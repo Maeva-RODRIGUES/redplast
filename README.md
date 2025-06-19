@@ -1,6 +1,6 @@
 # Redplast - Interface de gestion des protocoles
 
-Projet de l'Université de Bordeaux pour accompagner la réduction de l'usage du plastique en laboratoire de recherche.
+Projet de fictif pour l'Université de Bordeaux pour accompagner la réduction de l'usage du plastique en laboratoire de recherche.
 
 ## Architecture du projet
 

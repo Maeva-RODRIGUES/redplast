@@ -40,18 +40,28 @@
         :protocol="protocol"
        @deleted="loadProtocols"
        @consult="showProtocol"
+       @edit="openEditModal(protocol.id)"
       />
     </div>
 
-    <!-- Modale de détail du protocole -->
+    <!-- Modale de détail du protocole (consultation protocole en entier) -->
    <ProtocolDetailModal 
      v-if="selectedProtocol"
     :protocol="selectedProtocol"
     @close="selectedProtocol = null"
     />
 
+    <!-- Modale d'édition de protocole -->
+    <ProtocolModal
+      v-if="isEditModalOpen"
+    :is-open="isEditModalOpen"
+    :initial-protocol="protocolToEdit"
+    @close="closeEditModal"
+    @protocolUpdated="handleProtocolUpdated"
+    />
 
-    <!-- Call to Action -->
+
+    <!-- CTA -->
     <div class="bg-gradient-to-r from-bordeaux-600 to-framboise-600 rounded-2xl p-8 text-white text-center shadow-xl">
       <h3 class="text-2xl font-bold mb-4">Contribuez à la recherche durable</h3>
       <p class="text-lg mb-6 text-white/90">
@@ -75,10 +85,20 @@ import { ref, onMounted, computed } from 'vue'
 import axios from 'axios'
 import ProtocolCard from './ProtocolCard.vue'
 import ProtocolDetailModal from './ProtocolDetailModal.vue'
+import ProtocolModal from './ProtocolModal.vue'
 import { protocolsApi } from '../api/protocolsApi'
 
 const protocols = ref([])
 const selectedProtocol = ref(null)
+const isEditModalOpen = ref(false)
+const protocolToEdit = ref(null)
+
+async function openEditModal(protocolId) {
+  // Récupère le protocole à jour depuis l’API
+  const response = await protocolsApi.get(protocolId)
+  protocolToEdit.value = response.data
+  isEditModalOpen.value = true
+}
 
 const emit = defineEmits(['protocolCreated'])
 
@@ -95,13 +115,27 @@ const loadProtocols = async () => {
 const showProtocol = async (id) => {
   const response = await protocolsApi.get(id)
   selectedProtocol.value = response.data
-  // Ici = ouvrir une modal ou naviguer vers une page de détail
-
 }
+
+// const openEditModal = (protocol) => {
+//   protocolToEdit.value = protocol
+//   isEditModalOpen.value = true
+// }
+
+const closeEditModal = () => {
+  isEditModalOpen.value = false
+  protocolToEdit.value = null
+}
+
+const handleProtocolUpdated = () => {
+  loadProtocols()
+  closeEditModal()
+}
+
 
 onMounted(loadProtocols)
 
-// Permet au parent de forcer le refresh si besoin
+// refresh si besoin
 defineExpose({ loadProtocols })
 
 const sortedProtocols = computed(() => {

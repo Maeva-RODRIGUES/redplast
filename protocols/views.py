@@ -8,7 +8,7 @@ from .serializers import ProtocolSerializer
 class ProtocolViewSet(viewsets.ModelViewSet):
     queryset = Protocol.objects.all()
     serializer_class = ProtocolSerializer
-    permission_classes = [permissions.AllowAny]  # À ajuster selon vos besoins
+    permission_classes = [permissions.AllowAny]  
     
     def perform_create(self, serializer):
         # Associer l'utilisateur connecté comme auteur

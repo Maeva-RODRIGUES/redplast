@@ -13,9 +13,8 @@ interface Protocol {
   category: string
 }
 
-defineProps<{
-  protocol: Protocol
-}>()
+const props = defineProps<{ protocol: Protocol }>()
+const protocol = props.protocol
 
 
 const formatDate = (created_at: string): string => {
@@ -33,8 +32,12 @@ const getCategoryColor = (category: string) => {
   }
   return colors[category] || 'badge-neutral'
 }
+const emit = defineEmits<{
+  (e: 'deleted', id: number): void
+  (e: 'consult', id: number): void
+  (e: 'edit', protocol: any): void
+}>()
 
-const emit = defineEmits(['deleted', 'consult'])
 
 const onDelete = async (id: number) => {
   if (confirm('Voulez-vous vraiment supprimer ce protocole ?')) {
@@ -43,6 +46,14 @@ const onDelete = async (id: number) => {
     alert('Protocole supprimé avec succès.')
   }
 }
+
+
+// const onEdit = (id: number) => {
+//   // Ici,  une modale d’édition ou naviguer vers une page d’édition
+//   console.log('Modifier le protocole avec id', id)
+
+  emit('edit', protocol)
+// }
 </script>
 
 <template>
@@ -60,18 +71,15 @@ const onDelete = async (id: number) => {
             </div>
           </div>
         </div>
-        <div class="dropdown dropdown-end">
-          <label tabindex="0" class="btn btn-ghost btn-xs">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
-            </svg>
-          </label>
-          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a class="text-sm">📄 Voir le protocole</a></li>
-            <li><a class="text-sm">📥 Télécharger PDF</a></li>
-            <li><a class="text-sm">💬 Commenter</a></li>
-          </ul>
-        </div>
+        <button
+          class="btn btn-ghost btn-xs"
+           @click="$emit('edit', protocol)"
+          title="Modifier"
+          style="font-size: 1rem;"
+        >
+          ✏️
+      </button>
+       
       </div>
 
       <!-- Titre -->
@@ -80,7 +88,7 @@ const onDelete = async (id: number) => {
       </h3>
 
       <!-- Description -->
-      <p class="text-neutral/70 text-sm leading-relaxed mb-4 flex-grow">
+      <p class="line-clamp-2 text-neutral/70 text-sm leading-relaxed mb-4 flex-grow">
         {{ protocol.description }}
       </p>
 
@@ -103,7 +111,7 @@ const onDelete = async (id: number) => {
         </div>
       </div>
 
-      <!-- Action buttons -->
+      <!-- Action des boutons -->
       <div class="card-actions justify-end mt-4 pt-2">
         <button 
         class="btn btn-sm btn-primary text-white shadow-lg hover:shadow-xl transition-shadow duration-300"

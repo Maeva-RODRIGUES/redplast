@@ -117,8 +117,8 @@ const pdfContent = ref<HTMLElement>()
 const isGeneratingPDF = ref(false)
 
 const formattedDate = computed(() => {
-  if (!protocol?.date) return ''
-  const date = new Date(protocol.date)
+  if (!protocol?.created_at) return ''
+  const date = new Date(protocol.created_at)
   return date.toLocaleDateString('fr-FR', {
     year: 'numeric',
     month: 'long',

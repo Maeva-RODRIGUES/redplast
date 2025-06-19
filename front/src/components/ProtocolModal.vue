@@ -12,7 +12,9 @@
           <div class="w-10 h-10 bg-gradient-to-br from-bordeaux-500 to-framboise-500 rounded-lg flex items-center justify-center">
             <span class="text-white text-xl">📝</span>
           </div>
-          <h3 class="text-xl font-bold text-neutral">Nouveau protocole</h3>
+          <h3 class="text-xl font-bold text-neutral">
+            {{ isEditMode ? 'Modifier le protocole' : 'Nouveau protocole' }}
+          </h3>
         </div>
         <button 
           @click="closeModal"
@@ -58,6 +60,8 @@
             <span class="label-text-alt text-error">{{ errors.description }}</span>
           </label>
         </div>
+
+      
 
         <!-- Auteur-->
         <div class="form-control">
@@ -143,14 +147,19 @@
           >
             Annuler
           </button>
-          <button 
-            type="submit"
-            class="btn btn-primary text-white"
-            :disabled="isLoading"
-          >
-            <span v-if="isLoading" class="loading loading-spinner loading-sm"></span>
-            {{ isLoading ? 'Création...' : 'Créer le protocole' }}
-          </button>
+        <button 
+          type="submit"
+          class="btn btn-primary text-white"
+          :disabled="isLoading"
+        >
+          <span v-if="isLoading" class="loading loading-spinner loading-sm"></span>
+          <span v-else>
+            {{ isEditMode ? 'Enregistrer les modifications' : 'Créer le protocole' }}
+          </span>
+          <span v-if="isLoading">
+            {{ isEditMode ? 'Enregistrement...' : 'Création...' }}
+          </span>
+        </button>
         </div>
       </form>
     </div>
@@ -160,20 +169,23 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { protocolsApi } from '../api/protocolsApi'
-
+import { computed } from '@vue/reactivity';
 
 
 // Props
 interface Props {
   isOpen: boolean
+  initialProtocol?: any
 }
 
 const props = defineProps<Props>()
+const isEditMode = computed(() => !!props.initialProtocol)
 
-// Émissions
+// Emits
 const emit = defineEmits<{
   close: []
   protocolCreated: []
+  protocolUpdated: []
 }>()
 
 // État du formulaire
@@ -183,19 +195,6 @@ const form = ref({
   category: '',
   icon: '🧪',
   author: ''
-})
-
-// État de l'interface
-const isLoading = ref(false)
-const successMessage = ref('')
-const errorMessage = ref('')
-const errors = ref<Record<string, string>>({})
-
-// Réinitialiser le formulaire quand la modal s'ouvre
-watch(() => props.isOpen, (newValue) => {
-  if (newValue) {
-    resetForm()
-  }
 })
 
 // Fonctions
@@ -212,6 +211,31 @@ const resetForm = () => {
   errorMessage.value = ''
   isLoading.value = false
 }
+
+// État de l'interface
+const isLoading = ref(false)
+const successMessage = ref('')
+const errorMessage = ref('')
+const errors = ref<Record<string, string>>({})
+
+// Réinitialiser le formulaire quand la modal s'ouvre
+watch(
+  () => props.initialProtocol,
+  (protocol) => {
+    if (protocol) {
+      form.value = {
+        title: protocol.title || '',
+        description: protocol.description || '',
+        category: protocol.category || '',
+        icon: protocol.icon || '🧪',
+        author: protocol.author || ''
+      }
+    } else {
+      resetForm()
+    }
+  },
+  { immediate: true }
+)
 
 const closeModal = () => {
   emit('close')
@@ -259,27 +283,30 @@ const submitForm = async () => {
       date: new Date().toISOString()
     }
 
-    await protocolsApi.create(dataToSend)
-    
+       if (props.initialProtocol && props.initialProtocol.id) {
+      // Mode édition
+      await protocolsApi.update(props.initialProtocol.id, dataToSend)
+      successMessage.value = 'Protocole modifié avec succès !'
+      emit('protocolUpdated')
+    } else {
+      // Mode création
+      await protocolsApi.create(dataToSend)
+      successMessage.value = 'Protocole créé avec succès !'
+      emit('protocolCreated')
+    }
 
-    
-    successMessage.value = 'Protocole créé avec succès !'
-    emit('protocolCreated')
-    
     // Fermer la modal après un délai
     setTimeout(() => {
       closeModal()
     }, 1500)
-    
   } catch (error: any) {
-    console.error('Erreur lors de la création du protocole:', error)
-    
+    console.error('Erreur lors de la création/modification du protocole:', error)
     if (error.response?.data) {
       const backendErrors = error.response.data
       if (typeof backendErrors === 'object') {
         errors.value = backendErrors
       } else {
-        errorMessage.value = 'Erreur lors de la création du protocole'
+        errorMessage.value = 'Erreur lors de la création/modification du protocole'
       }
     } else {
       errorMessage.value = 'Erreur de connexion au serveur'
@@ -288,4 +315,5 @@ const submitForm = async () => {
     isLoading.value = false
   }
 }
+
 </script>

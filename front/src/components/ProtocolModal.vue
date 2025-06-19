@@ -93,12 +93,12 @@
             required
           >
             <option value="">Sélectionnez une catégorie</option>
-            <option value="collecte">Collecte</option>
-            <option value="alternatives">Alternatives</option>
-            <option value="reutilisation">Réutilisation</option>
-            <option value="analyse">Analyse</option>
-            <option value="formation">Formation</option>
-            <option value="sterilisation">Stérilisation</option>
+            <option value="Collecte">Collecte</option>
+            <option value="Alternatives">Alternatives</option>
+            <option value="Réutilisation">Réutilisation</option>
+            <option value="Analyse">Analyse</option>
+            <option value="Formation">Formation</option>
+            <option value="Stérilisation">Stérilisation</option>
           </select>
           <label v-if="errors.category" class="label">
             <span class="label-text-alt text-error">{{ errors.category }}</span>
@@ -223,6 +223,7 @@ watch(
   () => props.initialProtocol,
   (protocol) => {
     if (protocol) {
+      console.log('Catégorie reçue :', protocol.category)
       form.value = {
         title: protocol.title || '',
         description: protocol.description || '',

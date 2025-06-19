@@ -52,7 +52,7 @@ const onDelete = async (id: number) => {
 //   // Ici,  une modale d’édition ou naviguer vers une page d’édition
 //   console.log('Modifier le protocole avec id', id)
 
-  emit('edit', protocol)
+  emit('edit', props.protocol)
 // }
 </script>
 

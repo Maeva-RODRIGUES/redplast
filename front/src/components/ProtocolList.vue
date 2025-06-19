@@ -60,6 +60,18 @@
     @protocolUpdated="handleProtocolUpdated"
     />
 
+    <!-- Modal humoristique -->
+    <div v-if="isMotivationModalOpen" class="modal modal-open" @click.self="closeMotivationModal">
+    <div class="modal-box max-w-lg text-center">
+      <h3 class="font-bold text-2xl mb-4">😄 Merci pour votre enthousiasme !</h3>
+      <p class="mb-6">
+        Pour l’instant, la meilleure proposition serait… de m’intégrer à votre équipe&nbsp;😉<br>
+        <span class="text-sm text-neutral-500">Contactez-moi pour en discuter !</span>
+      </p>
+      <button class="btn btn-primary" @click="closeMotivationModal">Fermer</button>
+    </div>
+  </div>
+
 
     <!-- CTA -->
     <div class="bg-gradient-to-r from-bordeaux-600 to-framboise-600 rounded-2xl p-8 text-white text-center shadow-xl">
@@ -68,7 +80,9 @@
         Rejoignez notre communauté de chercheurs engagés pour un laboratoire plus respectueux de l'environnement
       </p>
       <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
-        <button class="btn btn-lg bg-white text-bordeaux-700 hover:bg-base-200 border-none shadow-lg">
+        <button class="btn btn-lg bg-white text-bordeaux-700 hover:bg-base-200 border-none shadow-lg"
+        @click="openMotivationModal"
+        >
           Proposer un protocole
         </button>
         <button class="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-bordeaux-700">
@@ -92,6 +106,15 @@ const protocols = ref([])
 const selectedProtocol = ref(null)
 const isEditModalOpen = ref(false)
 const protocolToEdit = ref(null)
+
+const isMotivationModalOpen = ref(false)
+
+function openMotivationModal() {
+  isMotivationModalOpen.value = true
+}
+function closeMotivationModal() {
+  isMotivationModalOpen.value = false
+}
 
 async function openEditModal(protocolId) {
   // Récupère le protocole à jour depuis l’API

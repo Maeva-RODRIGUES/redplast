@@ -44,11 +44,12 @@
     </div>
 
     <!-- Modale de détail du protocole -->
-    <ProtocolDetailModal 
-      v-if="selectedProtocol" 
-      :protocol="selectedProtocol" 
-      @close="selectedProtocol = null" 
+   <ProtocolDetailModal 
+     v-if="selectedProtocol"
+    :protocol="selectedProtocol"
+    @close="selectedProtocol = null"
     />
+
 
     <!-- Call to Action -->
     <div class="bg-gradient-to-r from-bordeaux-600 to-framboise-600 rounded-2xl p-8 text-white text-center shadow-xl">

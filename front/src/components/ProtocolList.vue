@@ -40,7 +40,7 @@
         :protocol="protocol"
        @deleted="loadProtocols"
        @consult="showProtocol"
-       @edit="openEditModal(protocol.id)"
+       @edit="handleEdit"
       />
     </div>
 
@@ -52,13 +52,15 @@
     />
 
     <!-- Modale d'édition de protocole -->
-    <ProtocolModal
+    <!-- <ProtocolModal
       v-if="isEditModalOpen"
     :is-open="isEditModalOpen"
     :initial-protocol="protocolToEdit"
     @close="closeEditModal"
     @protocolUpdated="handleProtocolUpdated"
-    />
+    /> -->
+
+    
 
     <!-- Modal humoristique -->
     <div v-if="isMotivationModalOpen" class="modal modal-open" @click.self="closeMotivationModal">
@@ -123,7 +125,11 @@ async function openEditModal(protocolId) {
   isEditModalOpen.value = true
 }
 
-const emit = defineEmits(['protocolCreated'])
+const emit = defineEmits(['edit','protocolCreated'])
+
+function handleEdit(protocol) {
+  emit('edit', protocol)
+}
 
 const loadProtocols = async () => {
   try {
@@ -139,11 +145,6 @@ const showProtocol = async (id) => {
   const response = await protocolsApi.get(id)
   selectedProtocol.value = response.data
 }
-
-// const openEditModal = (protocol) => {
-//   protocolToEdit.value = protocol
-//   isEditModalOpen.value = true
-// }
 
 const closeEditModal = () => {
   isEditModalOpen.value = false

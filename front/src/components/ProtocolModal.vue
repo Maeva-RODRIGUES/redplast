@@ -284,22 +284,24 @@ const submitForm = async () => {
       date: new Date().toISOString()
     }
 
-       if (props.initialProtocol && props.initialProtocol.id) {
+     if (props.initialProtocol && props.initialProtocol.id) {
       // Mode édition
       await protocolsApi.update(props.initialProtocol.id, dataToSend)
       successMessage.value = 'Protocole modifié avec succès !'
-      emit('protocolUpdated')
+      setTimeout(() => {
+        emit('protocolUpdated')
+        closeModal()
+      }, 1500)
     } else {
       // Mode création
       await protocolsApi.create(dataToSend)
       successMessage.value = 'Protocole créé avec succès !'
-      emit('protocolCreated')
+      setTimeout(() => {
+        emit('protocolCreated')
+        emit('protocolUpdated')
+        closeModal()
+      }, 1500)
     }
-
-    // Fermer la modal après un délai
-    setTimeout(() => {
-      closeModal()
-    }, 1500)
   } catch (error: any) {
     console.error('Erreur lors de la création/modification du protocole:', error)
     if (error.response?.data) {

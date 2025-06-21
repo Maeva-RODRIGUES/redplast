@@ -2,15 +2,38 @@
 import { ref } from 'vue'
 import ProtocolList from './components/ProtocolList.vue'
 import ProtocolModal from './components/ProtocolModal.vue'
-
+import type { Protocol } from './types/protocol'
 
 const showModal = ref(false)
+const protocolToEdit = ref<Protocol | null>(null)
 const protocolListRef = ref()
+
+function openCreateModal() {
+  protocolToEdit.value = null
+  showModal.value = true
+}
+
+function openEditModal(protocol: Protocol) {
+  console.log('openEditModal appelé', protocol)
+  protocolToEdit.value = protocol
+  showModal.value = true
+}
+
+function closeModal() {
+  showModal.value = false
+  protocolToEdit.value = null
+}
 
 const onProtocolCreated = () => {
   showModal.value = false
   protocolListRef.value?.loadProtocols()
 }
+
+function onProtocolUpdated() {
+  closeModal()
+  protocolListRef.value?.loadProtocols()
+}
+
 </script>
 
 <template>
@@ -34,7 +57,7 @@ const onProtocolCreated = () => {
 
           <!-- Bouton ➕ -->
           <button
-            @click="showModal = true"
+            @click="openCreateModal"
             class="btn btn-sm btn-primary text-white shadow-md hover:scale-105 hover:shadow-lg transition-all"
           >
             ➕ Nouveau protocole
@@ -49,14 +72,18 @@ const onProtocolCreated = () => {
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <ProtocolList ref="protocolListRef" />
+       <ProtocolList ref="protocolListRef" @edit="openEditModal" />
     </main>
 
-    <!-- Modal -->
+
+    <!-- Modal de création-->
     <ProtocolModal 
-      :isOpen="showModal"
-      @close="showModal = false"
+      v-if="showModal"
+       :isOpen="showModal"
+      :initial-protocol="protocolToEdit"
+      @close="closeModal"
       @protocolCreated="onProtocolCreated"
+      @protocolUpdated="onProtocolUpdated"
     />
      
 

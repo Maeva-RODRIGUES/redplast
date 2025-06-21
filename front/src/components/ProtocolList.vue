@@ -60,17 +60,12 @@
     @protocolUpdated="handleProtocolUpdated"
     /> 
 
-    <!-- Modal humoristique -->
-    <div v-if="isMotivationModalOpen" class="modal modal-open" @click.self="closeMotivationModal">
-    <div class="modal-box max-w-lg text-center">
-      <h3 class="font-bold text-2xl mb-4">😄 Merci pour votre enthousiasme !</h3>
-      <p class="mb-6">
-        Pour l’instant, la meilleure proposition serait… de m’intégrer à votre équipe&nbsp;😉<br>
-        <span class="text-sm text-neutral-500">Contactez-moi pour en discuter !</span>
-      </p>
-      <button class="btn btn-primary" @click="closeMotivationModal">Fermer</button>
-    </div>
-  </div>
+    <!-- Modale de motivation pour proposer un protocole -->
+    <MotivationModal 
+    :isOpen="isMotivationModalOpen"
+    @close="closeMotivationModal"
+    />
+
 
     <!-- CTA -->
     <div class="bg-gradient-to-r from-bordeaux-600 to-framboise-600 rounded-2xl p-8 text-white text-center shadow-xl">
@@ -84,9 +79,14 @@
         >
           Proposer un protocole
         </button>
-        <button class="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-bordeaux-700">
-          En savoir plus
-        </button>
+
+        <a 
+          href="https://portf0l.io/maeva-rodrigues" 
+          target="_blank" 
+          class="btn btn-lg btn-outline text-white border-white hover:bg-white hover:text-bordeaux-700"
+        >
+        En savoir plus
+        </a>
       </div>
     </div>
   </div>
@@ -98,6 +98,7 @@ import axios from 'axios'
 import ProtocolCard from './ProtocolCard.vue'
 import ProtocolDetailModal from './ProtocolDetailModal.vue'
 import ProtocolModal from './ProtocolModal.vue'
+import MotivationModal from './MotivationModal.vue'
 import { protocolsApi } from '../api/protocolsApi'
 
 const protocols = ref([])

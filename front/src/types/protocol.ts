@@ -7,3 +7,4 @@ export interface Protocol {
   icon: string;
   category: string;
 }
+

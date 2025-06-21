@@ -35,8 +35,8 @@
     <!-- Protocols Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <ProtocolCard 
-        v-for="protocol in sortedProtocols" 
-        :key="protocol.id"
+        v-for="protocol in sortedProtocols"
+        :key="protocol.id + '-' + protocol.updated_at"   
         :protocol="protocol"
        @deleted="loadProtocols"
        @consult="showProtocol"
@@ -52,15 +52,13 @@
     />
 
     <!-- Modale d'édition de protocole -->
-    <!-- <ProtocolModal
+    <ProtocolModal
       v-if="isEditModalOpen"
     :is-open="isEditModalOpen"
     :initial-protocol="protocolToEdit"
     @close="closeEditModal"
     @protocolUpdated="handleProtocolUpdated"
-    /> -->
-
-    
+    /> 
 
     <!-- Modal humoristique -->
     <div v-if="isMotivationModalOpen" class="modal modal-open" @click.self="closeMotivationModal">
@@ -73,7 +71,6 @@
       <button class="btn btn-primary" @click="closeMotivationModal">Fermer</button>
     </div>
   </div>
-
 
     <!-- CTA -->
     <div class="bg-gradient-to-r from-bordeaux-600 to-framboise-600 rounded-2xl p-8 text-white text-center shadow-xl">
@@ -93,7 +90,6 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script setup>
@@ -128,18 +124,19 @@ async function openEditModal(protocolId) {
 const emit = defineEmits(['edit','protocolCreated'])
 
 function handleEdit(protocol) {
-  emit('edit', protocol)
+  openEditModal(protocol.id)
+  // emit('edit', protocol)
 }
 
 const loadProtocols = async () => {
   try {
     const response = await axios.get('http://127.0.0.1:8000/api/protocols/')
     protocols.value = response.data
+    console.log('Protocoles rechargés:', protocols.value)
   } catch (error) {
     console.error('Erreur de récupération :', error)
   }
 }
-
 
 const showProtocol = async (id) => {
   const response = await protocolsApi.get(id)
@@ -156,14 +153,13 @@ const handleProtocolUpdated = () => {
   closeEditModal()
 }
 
-
 onMounted(loadProtocols)
 
 // refresh si besoin
 defineExpose({ loadProtocols })
 
 const sortedProtocols = computed(() => {
-  return [...protocols.value].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+  return [...protocols.value].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
 })
 </script>
 

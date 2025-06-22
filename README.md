@@ -1,8 +1,7 @@
-# 🌱 Redplast - Révolutionner la recherche durable
+# ♻️ Redplast - Révolutionner la recherche durable
 
 <div align="center">
 
-![Redplast Logo](https://via.placeholder.com/200x100/991b1b/ffffff?text=♻️+REDPLAST)
 
 **L'avenir de la recherche scientifique responsable**
 
@@ -38,7 +37,7 @@
 
 ## ⚠️ **Note importante - Projet de candidature**
 
-> **🎯 Contexte :** Ce projet **Redplast** est un **projet fictif** créé spécialement dans le cadre d'une **candidature à une offre d'emploi**. 
+> **Contexte :** Ce projet **Redplast** est un **projet fictif** créé spécialement dans le cadre d'une **candidature à une offre d'emploi**. 
 > 
 > Plutôt que d'envoyer un CV traditionnel, j'ai choisi de démontrer mes compétences techniques et créatives en développant une application web complète qui illustre mon expertise en développement full-stack moderne.
 >
@@ -50,7 +49,7 @@
 
 <div align="center">
 
-### 🚀 **Découvrez l'application en action !**
+### **Découvrez l'application en action !**
 
 👉 **[Voir la démo](https://lien-de-ta-demo.vercel.app)**
 
@@ -68,29 +67,29 @@
 
 **Redplast** transforme la façon dont les laboratoires de recherche abordent leur impact environnemental. En partenariat avec l'**Université de Bordeaux**, nous développons une plateforme collaborative qui permet aux chercheurs de partager, découvrir et implémenter des protocoles scientifiques durables.
 
-### 🌍 **Pourquoi Redplast ?**
+### **Pourquoi Redplast ?**
 
-- **🔬 Impact scientifique** : Réduire l'empreinte plastique sans compromettre la qualité de la recherche
-- **🤝 Collaboration** : Une communauté de chercheurs engagés pour l'environnement
-- **📊 Mesure d'impact** : Suivre et quantifier les réductions d'usage du plastique
-- **🚀 Innovation** : Découvrir les alternatives les plus prometteuses
+- **Impact scientifique** : Réduire l'empreinte plastique sans compromettre la qualité de la recherche
+- **Collaboration** : Une communauté de chercheurs engagés pour l'environnement
+- **Mesure d'impact** : Suivre et quantifier les réductions d'usage du plastique
+- **Innovation** : Découvrir les alternatives les plus prometteuses
 
 ---
 
 ## 💼 **Compétences démontrées dans ce projet**
 
-### 🎨 **Frontend moderne**
+### **Frontend moderne**
 - **Vue.js 3 + Composition API** : Réactivité et performance optimales
 - **TypeScript** : Type safety et maintenabilité du code
 - **Tailwind CSS + DaisyUI** : Design system cohérent et responsive
 - **Animations CSS** : Micro-interactions et transitions fluides
 
-### ⚙️ **Backend robuste**
+### **Backend robuste**
 - **Django + Django REST Framework** : API REST complète et sécurisée
 - **Architecture MVT** : Séparation claire des responsabilités
 - **Base de données relationnelle** : Modélisation et requêtes optimisées
 
-### 🛠️ **Bonnes pratiques**
+### **Bonnes pratiques**
 - **Architecture modulaire** : Code organisé et maintenable
 - **Responsive design** : Expérience utilisateur optimale sur tous supports
 - **Accessibilité** : Interfaces inclusives et conformes aux standards
@@ -100,12 +99,12 @@
 
 ## ✨ **Fonctionnalités phares**
 
-### 🎨 **Interface moderne & intuitive**
+### **Interface moderne & intuitive**
 - Design responsive et accessible sur tous les appareils
 - Animations fluides et micro-interactions soignées
 - Système de couleurs inspiré de l'identité bordelaise
 
-### 📋 **Gestion intelligente des protocoles**
+### **Gestion intelligente des protocoles**
 - **Catégorisation avancée** : Collecte, Alternatives, Réutilisation, Analyse, Formation, Stérilisation
 - **Export PDF** professionnel pour documentation
 - **Système de badges** visuels par catégorie
@@ -116,7 +115,7 @@
 
 ## 🏗️ **Architecture technique**
 
-### 🎯 **Stack moderne & performante**
+### **Stack moderne & performante**
 
 ```mermaid
 graph TB
@@ -137,12 +136,12 @@ graph TB
 
 ## 🚀 **Démarrage rapide**
 
-### 📋 **Prérequis**
-- Python 3.8+ 🐍
-- Node.js 18+ ⚡
-- Git 📦
+### **Prérequis**
+- Python 3.8+ 
+- Node.js 18+ 
+- Git 
 
-### ⚡ **Installation express**
+### **Installation express**
 
 ```bash
 # 1️⃣ Cloner le projet
@@ -162,10 +161,10 @@ npm install
 npm run dev
 ```
 
-### 🎉 **C'est parti !**
-- 🌐 **Frontend** : http://localhost:5173
-- 🔧 **API Backend** : http://127.0.0.1:8000/api
-- 👨‍💼 **Admin Django** : http://127.0.0.1:8000/admin
+### **C'est parti !**
+- **Frontend** : http://localhost:5173
+- **API Backend** : http://127.0.0.1:8000/api
+- 👨**Admin Django** : http://127.0.0.1:8000/admin
 
 ---
 
@@ -182,7 +181,7 @@ npm run dev
 
 ## 📊 **API documentation**
 
-### 🔗 **Endpoints principaux**
+### **Endpoints principaux**
 
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
@@ -193,7 +192,7 @@ npm run dev
 | `DELETE` | `/api/protocols/{id}/` | 🗑️ Supprime un protocole |
 
 
-### 📝 **Exemple de réponse**
+### **Exemple de réponse**
 
 ```json
 {
@@ -214,20 +213,20 @@ npm run dev
 
 ## 🎨 **Design system**
 
-### 🎨 **Palette de couleurs**
+### **Palette de couleurs**
 
 <div align="center">
 
 | Couleur | Hex | Usage |
 |---------|-----|-------|
-| 🍷 **Bordeaux** | `#991b1b` | Actions principales, navigation |
-| 🌸 **Framboise** | `#db2777` | Accents, highlights |
-| ⚪ **Neutre** | `#374151` | Textes, contenus |
-| 🌿 **Succès** | `#10b981` | Validations, confirmations |
+| **Bordeaux** | `#991b1b` | Actions principales, navigation |
+| **Framboise** | `#db2777` | Accents, highlights |
+| **Neutre** | `#374151` | Textes, contenus |
+| **Succès** | `#10b981` | Validations, confirmations |
 
 </div>
 
-### 🎯 **Composants clés**
+### **Composants clés**
 - **ProtocolCard** : Cartes protocoles avec animations hover
 - **MotivationModal** : Modal de candidature créative
 - **CategoryBadges** : Système de badges colorés
@@ -236,12 +235,12 @@ npm run dev
 
 ## 🌟 **Fonctionnalités avancées**
 
-### 🔄 **Gestion d'état réactive**
+### **Gestion d'état réactive**
 - Synchronisation temps réel des données
 - Cache intelligent des requêtes API
 - Gestion optimiste des mises à jour
 
-### 📱 **Responsive design**
+### **Responsive design**
 - Mobile-first approach
 - Breakpoints optimisés
 - Touch-friendly interactions
@@ -258,37 +257,37 @@ npm run dev
 
 ## 📈 **Roadmap & vision**
 
-### 🎯 **Version 2.0 - Q2 2025**
-- [ ] 🤖 **IA recommandations** : Suggestions personnalisées de protocoles
-- [ ] 🌐 **Multi-langues** : Support international
-- [ ] 📊 **Analytics avancés** : Tableaux de bord personnalisables
-- [ ] 🔗 **Intégrations** : APIs laboratoires partenaires
+### **Version 2.0 - Q2 2025**
+- [ ] **IA recommandations** : Suggestions personnalisées de protocoles
+- [ ] **Multi-langues** : Support international
+- [ ] **Analytics avancés** : Tableaux de bord personnalisables
+- [ ] **Intégrations** : APIs laboratoires partenaires
 
-### 🚀 **Vision long terme**
+### **Vision long terme**
 - **Réseau global** : Connecter les laboratoires mondiaux
 - **Certification** : Labels de durabilité scientifique
 - **Marketplace** : Échange d'équipements réutilisables
 - **Formation** : Modules e-learning intégrés
 - **Recherche et filtrage** performants
 
-### 📈 **Tableau de bord analytique**
+### **Tableau de bord analytique**
 - Statistiques en temps réel
 - Suivi des contributions par chercheur
 - Métriques d'impact environnemental
 - Visualisation des tendances
 
-### 👥 **Communauté collaborative**
+### **Communauté collaborative**
 - Profils chercheurs détaillés
 - Système de commentaires et évaluations
 - Partage d'expériences et bonnes pratiques
 
-### 🔒 **Sécurité**
+### **Sécurité**
 - Authentification Django robuste
 - Protection CSRF
 - Validation côté client et serveur
   
 
-### ♿ **Accessibilité**
+### **Accessibilité**
 - Conformité WCAG 2.1
 - Navigation clavier complète
 - Lecteurs d'écran supportés
@@ -297,16 +296,16 @@ npm run dev
 
 ## 🏆 **À Propos de la développeuse**
 
-### 👨‍💻 **Profil**
+### 👨**Profil**
 Ce projet a été entièrement conçu et développé par **Maëva RODRIGUES** comme démonstration de compétences dans le cadre d'une candidature professionnelle.
 
-### 🎯 **Expertise démontrée**
+### **Expertise démontrée**
 - **Full-Stack development** : Maîtrise complète de la chaîne de développement
 - **UI/UX design** : Création d'interfaces modernes et intuitives
 - **Architecture logicielle** : Conception de systèmes évolutifs et maintenables
 - **Créativité** : Approche innovante de la présentation de candidature
 
-### 💡 **Philosophie de développement**
+### **Philosophie de développement**
 - **Code Clean** : Lisibilité et maintenabilité prioritaires
 - **User-Centric** : L'expérience utilisateur au cœur des décisions
 - **Performance** : Optimisation continue des performances
@@ -318,18 +317,15 @@ Ce projet a été entièrement conçu et développé par **Maëva RODRIGUES** co
 
 <div align="center">
 
-### 💬 **Intéressé par mon profil ?**
+### **Intéressé par mon profil ?**
 
 Si cette approche créative vous a séduit et que mes compétences correspondent à vos besoins, n'hésitez pas à me contacter !
 
-[![Email](https://img.shields.io/badge/Email-votre.email@example.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:maeva.rodrigues1@gmail.com)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Votre%20Profil-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/maeva-rodrigues-sapfiori/)
-[![GitHub](https://img.shields.io/badge/GitHub-Voir%20Portfolio-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Maeva-RODRIGUES)
+[![Email](https://img.shields.io/badge/Email-maeva.rodrigues1@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:maeva.rodrigues1@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Mon%20Profil-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/maeva-rodrigues-sapfiori/)
+[![GitHub](https://img.shields.io/badge/GitHub-Voir%20Mon%20Github-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Maeva-RODRIGUES)
 
-### 🎯 **Disponible pour**
-- **CDI/CDD** 💼
-- **Projets innovants** 💡
-- **Collaborations** 🤝
+### **Disponible pour** : **CDI/CDD**  
 
 </div>
 

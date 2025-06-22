@@ -17,8 +17,13 @@ const props = defineProps<{ protocol: Protocol }>()
 const protocol = props.protocol
 
 
-const formatDate = (created_at: string): string => {
-  return format(new Date(created_at), "dd MMMM yyyy à HH:mm", { locale: fr })
+const formatDate = (created_at?: string): string => {
+  if (!created_at) return 'Date manquante'
+
+  const date = new Date(created_at)
+  return isNaN(date.getTime())
+    ? 'Date invalide'
+    : format(date, "dd MMMM yyyy à HH:mm", { locale: fr })
 }
 
 const getCategoryColor = (category: string) => {

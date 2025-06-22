@@ -164,7 +164,7 @@ npm run dev
 ### **C'est parti !**
 - **Frontend** : http://localhost:5173
 - **API Backend** : http://127.0.0.1:8000/api
-- 👨**Admin Django** : http://127.0.0.1:8000/admin
+- **Admin Django** : http://127.0.0.1:8000/admin
 
 ---
 
@@ -296,7 +296,7 @@ npm run dev
 
 ## 🏆 **À Propos de la développeuse**
 
-### 👨**Profil**
+### **Profil**
 Ce projet a été entièrement conçu et développé par **Maëva RODRIGUES** comme démonstration de compétences dans le cadre d'une candidature professionnelle.
 
 ### **Expertise démontrée**

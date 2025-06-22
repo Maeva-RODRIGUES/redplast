@@ -55,7 +55,9 @@ const onDelete = async (id: number) => {
 </script>
 
 <template>
-  <div class="card bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-base-200 hover:border-bordeaux-200 group">
+  <div class="card bg-white shadow-lg hover:shadow-2xl transition-all duration-300 border border-base-200 hover:border-bordeaux-200 group"
+   data-testid="protocol-card"
+  >
     <div class="card-body p-6">
       <!-- Header avec icône et catégorie -->
       <div class="flex items-start justify-between mb-4">

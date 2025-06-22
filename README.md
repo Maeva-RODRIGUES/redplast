@@ -57,7 +57,7 @@
 
 [![Demo Screenshot](https://via.placeholder.com/600x300/991b1b/ffffff?text=🖥️+DEMO+INTERACTIVE)](https://lien-de-ta-demo.vercel.app)
 
-**💡 Astuce :** N'oubliez pas de cliquer sur "Proposer un protocole" pour découvrir la surprise ! 🎭
+**💡 Astuce :** N'oubliez pas de cliquer sur **"Proposer un protocole"** pour découvrir la surprise ! 🎭
 
 </div>
 
@@ -145,7 +145,7 @@ graph TB
 
 ```bash
 # 1️⃣ Cloner le projet
-git clone https://github.com/votre-username/redplast.git
+git clone https://github.com/Maeva-RODRIGUES/redplast
 cd redplast
 
 # 2️⃣ Backend Django
@@ -258,10 +258,10 @@ npm run dev
 ## 📈 **Roadmap & vision**
 
 ### **Version 2.0 - Q2 2025**
-- [ ] **IA recommandations** : Suggestions personnalisées de protocoles
-- [ ] **Multi-langues** : Support international
-- [ ] **Analytics avancés** : Tableaux de bord personnalisables
-- [ ] **Intégrations** : APIs laboratoires partenaires
+- **IA recommandations** : Suggestions personnalisées de protocoles
+- **Multi-langues** : Support international
+- **Analytics avancés** : Tableaux de bord personnalisables
+- **Intégrations** : APIs laboratoires partenaires
 
 ### **Vision long terme**
 - **Réseau global** : Connecter les laboratoires mondiaux

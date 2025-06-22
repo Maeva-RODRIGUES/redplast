@@ -223,7 +223,6 @@ watch(
   () => props.initialProtocol,
   (protocol) => {
     if (protocol) {
-      console.log('Catégorie reçue :', protocol.category)
       form.value = {
         title: protocol.title || '',
         description: protocol.description || '',

@@ -11,8 +11,6 @@ class ProtocolViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]  
     
     def perform_create(self, serializer):
-        # Associer l'utilisateur connecté comme auteur
-        # serializer.save(author=self.request.user)
         serializer.save()
     
     @action(detail=False, methods=['get'])

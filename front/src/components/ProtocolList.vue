@@ -133,7 +133,6 @@ const loadProtocols = async () => {
   try {
     const response = await axios.get('http://127.0.0.1:8000/api/protocols/')
     protocols.value = response.data
-    console.log('Protocoles rechargés:', protocols.value)
   } catch (error) {
     console.error('Erreur de récupération :', error)
   }

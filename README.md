@@ -109,7 +109,9 @@
 - **Export PDF** professionnel pour documentation
 - **Système de badges** visuels par catégorie
 
-
+### **Tableau de bord analytique**
+- Statistiques en temps réel
+- Suivi des contributions par chercheur
 
 ---
 
@@ -241,7 +243,6 @@ npm run dev
 - Gestion optimiste des mises à jour
 
 ### **Responsive design**
-- Mobile-first approach
 - Breakpoints optimisés
 - Touch-friendly interactions
   
@@ -271,8 +272,6 @@ npm run dev
 - **Recherche et filtrage** performants
 
 ### **Tableau de bord analytique**
-- Statistiques en temps réel
-- Suivi des contributions par chercheur
 - Métriques d'impact environnemental
 - Visualisation des tendances
 

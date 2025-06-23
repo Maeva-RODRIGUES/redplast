@@ -26,7 +26,7 @@
               </svg>
             </div>
             <div class="stat-title text-neutral/60">Chercheurs contributeurs</div>
-            <div class="stat-value text-framboise-700">6</div>
+            <div class="stat-value text-framboise-700">{{ contributorCount }}</div>
           </div>
         </div>
       </div>
@@ -107,6 +107,11 @@ const isEditModalOpen = ref(false)
 const protocolToEdit = ref(null)
 
 const isMotivationModalOpen = ref(false)
+
+const contributorCount = computed(() => {
+  const authors = protocols.value.map(p => p.author)
+  return new Set(authors).size
+})
 
 function openMotivationModal() {
   isMotivationModalOpen.value = true

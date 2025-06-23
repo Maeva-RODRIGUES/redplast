@@ -1,4 +1,5 @@
 .env
+.env.production
 back/config/settings.py
 
 # Ignore Python cache files

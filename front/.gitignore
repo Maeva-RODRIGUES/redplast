@@ -30,3 +30,6 @@ coverage
 .qodo
 
 *.tsbuildinfo
+
+.env
+.env.production

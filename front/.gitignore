@@ -33,3 +33,9 @@ coverage
 
 .env
 .env.production
+
+# Config JS générés
+*.js
+!vite.config.ts
+!vitest.config.ts
+!cypress.config.ts

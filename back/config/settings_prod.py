@@ -1,8 +1,15 @@
+import dj_database_url
+import os
+
 from pathlib import Path
 from decouple import Config, RepositoryEnv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 config = Config(RepositoryEnv(BASE_DIR / ".env.production"))
+
+DATABASES = {
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+}
 
 # Sécurité
 SECRET_KEY = config('SECRET_KEY')

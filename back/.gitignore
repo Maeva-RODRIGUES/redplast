@@ -1,11 +1,23 @@
-venv/
-__pycache__/
-*.pyc
-.DS_Store
-*.log
-.idea
-.qodo
-.vscode
 .env
+back/config/settings.py
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+*.log
+
+# Ignore virtual environment directories
+venv/
+.venv/
+env/
+ENV/
+
+# Ignore database files
 *.sqlite3
-db.sqlite3
+
+# Ignore migrations
+migrations/
+
+.vscode/
+.idea/
+

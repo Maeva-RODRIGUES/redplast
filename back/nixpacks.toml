@@ -1,5 +1,7 @@
 [phases.setup]
-nixPkgs = ["mariadb-connector-c"]
+nixPkgs = [ "python3"
+  "python3Packages.pip"
+  "mariadb-connector-c"]
 
 [phases.build]
 commands = [

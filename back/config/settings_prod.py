@@ -9,12 +9,12 @@ if env_path.exists():
 else:
     config = Config(os.environ)
 
-# Sécurité
+
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
-# Applications
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-# Middlewares
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -59,7 +58,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Base de données (MySQL)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -71,34 +69,28 @@ DATABASES = {
     }
 }
 
-# Sécurité production
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
 
-# HSTS (HTTP Strict Transport Security)
 SECURE_HSTS_SECONDS = 3600
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
-# Langue / fuseau
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Fichiers statiques
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# CORS (origines autorisées pour le front)
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS").split(",")
 
-# Validation des mots de passe
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},

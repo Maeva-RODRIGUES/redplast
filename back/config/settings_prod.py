@@ -1,15 +1,10 @@
 import dj_database_url
-import os
-
 from pathlib import Path
 from decouple import Config, RepositoryEnv
+import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 config = Config(RepositoryEnv(BASE_DIR / ".env.production"))
-
-DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
-}
 
 # Sécurité
 SECRET_KEY = config('SECRET_KEY')
@@ -98,10 +93,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # CORS (origines autorisées pour le front)
 CORS_ALLOW_ALL_ORIGINS = False
-CORS_ALLOWED_ORIGINS = [
-    "http://100.78.66.33:3000",  
-    "http://localhost:3000",     
-]
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS").split(",")
 
 # Validation des mots de passe
 AUTH_PASSWORD_VALIDATORS = [

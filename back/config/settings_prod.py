@@ -1,6 +1,7 @@
 from pathlib import Path
 from decouple import Config, RepositoryEnv
 import os
+import dj_database_url
 
 print("ALLOWED_HOSTS env:", os.environ.get("ALLOWED_HOSTS"))
 
@@ -15,7 +16,8 @@ else:
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
-ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default='').split(",")
+
 
 
 INSTALLED_APPS = [
@@ -62,14 +64,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'), 
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
 
 SECURE_BROWSER_XSS_FILTER = True

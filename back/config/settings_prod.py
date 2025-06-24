@@ -2,6 +2,9 @@ from pathlib import Path
 from decouple import Config, RepositoryEnv
 import os
 
+print("ALLOWED_HOSTS env:", os.environ.get("ALLOWED_HOSTS"))
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 env_path = BASE_DIR / ".env.production"
 if env_path.exists():
@@ -99,3 +102,4 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

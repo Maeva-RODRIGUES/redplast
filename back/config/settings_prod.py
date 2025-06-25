@@ -10,10 +10,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 config = Config(RepositoryEnv(BASE_DIR / ".env.production"))
 
 DATABASES = {
-    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'mysql.connector.django',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
+    }
 }
-if DATABASES['default']['ENGINE'] == 'django.db.backends.mysql':
-    DATABASES['default']['ENGINE'] = 'mysql.connector.django'
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = False

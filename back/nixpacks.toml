@@ -2,7 +2,7 @@
 nixPkgs = [ 
   "python3",
   "python3Packages.pip",
-  "mariadb-connector-c", 
+  "python3Packages.mysql-connector-python", 
   "pkg-config"
  ]
 

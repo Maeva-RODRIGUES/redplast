@@ -1,9 +1,11 @@
 from pathlib import Path
+import dj_database_url
 from decouple import Config, RepositoryEnv
 import os
 
 
 print("ALLOWED_HOSTS env:", os.environ.get("ALLOWED_HOSTS"))
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 env_path = BASE_DIR / ".env.production"
@@ -11,23 +13,34 @@ if env_path.exists():
     config = Config(RepositoryEnv(env_path))
 else:
     config = Config(os.environ)
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-    }
-}
-
+    
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = False
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
+print(repr(config("CORS_ALLOWED_ORIGINS")))
+print(repr(config("ALLOWED_HOSTS")))
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL', default=None),
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': config('DB_NAME'),
+#         'USER': config('DB_USER'),
+#         'PASSWORD': config('DB_PASSWORD'),
+#         'HOST': config('DB_HOST'),
+#         'PORT': config('DB_PORT'),
+#     }
+# }
+
+
+DEBUG = False
 
 INSTALLED_APPS = [
     'django.contrib.admin',

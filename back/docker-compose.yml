@@ -1,14 +1,5 @@
 version: "3.9"
 services:
-  db:
-    image: mariadb:10.11
-    env_file:
-      - .env.production
-    ports:
-      - "3307:3306" 
-    volumes:
-      - db_data:/var/lib/mysql
-
   web:
     build: .
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 2
@@ -16,9 +7,3 @@ services:
       - .env.production
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-
-volumes:
-  db_data:
-

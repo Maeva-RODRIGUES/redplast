@@ -12,6 +12,8 @@ config = Config(RepositoryEnv(BASE_DIR / ".env.production"))
 DATABASES = {
     'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
 }
+if DATABASES['default']['ENGINE'] == 'django.db.backends.mysql':
+    DATABASES['default']['ENGINE'] = 'mysql.connector.django'
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = False

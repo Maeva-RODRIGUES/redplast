@@ -3,7 +3,11 @@ nixPkgs = [
   "python3",
   "python3Packages.pip",
   "mariadb-connector-c", 
-  "pkg-config"
+  "pkg-config",
+  "gcc",
+  "python3Packages.python3",
+  "python3Packages.setuptools",
+  "python3Packages.wheel"
   
  ]
 

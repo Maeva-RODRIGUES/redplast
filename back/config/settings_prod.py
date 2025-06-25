@@ -7,16 +7,15 @@ print("ALLOWED_HOSTS env:", os.environ.get("ALLOWED_HOSTS"))
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-env_path = BASE_DIR / ".env.production"
-if env_path.exists():
-    config = Config(RepositoryEnv(env_path))
-else:
-    config = Config(os.environ)
+config = Config(RepositoryEnv(BASE_DIR / ".env.production"))
 
+DATABASES = {
+    'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+}
 
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = False
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default='').split(",")
+ALLOWED_HOSTS = config("ALLOWED_HOSTS")
 
 
 
@@ -63,13 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL'), 
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
-}
 
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True

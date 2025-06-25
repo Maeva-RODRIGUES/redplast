@@ -1,13 +1,18 @@
-from pathlib import Path
 from decouple import Config, RepositoryEnv
 import os
-import dj_database_url
+
+from back.config.settings import BASE_DIR
+
 
 print("ALLOWED_HOSTS env:", os.environ.get("ALLOWED_HOSTS"))
 
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-config = Config(RepositoryEnv(BASE_DIR / ".env.production"))
+env_path = BASE_DIR / ".env.production"
+if env_path.exists():
+    print(f"DEBUG: .env.production found at {env_path}") 
+    config = Config(RepositoryEnv(str(env_path))) 
+else:
+    print("DEBUG: .env.production not found. Loading from os.environ.") 
+    config = Config(os.environ)
 
 DATABASES = {
     'default': {

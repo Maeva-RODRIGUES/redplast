@@ -3,8 +3,8 @@ nixPkgs = [
   "python3",
   "python3Packages.pip",
   "mariadb-connector-c", 
-  "pkg-config",
-  "mariadb"
+  "pkg-config"
+  
  ]
 
 [phases.build]

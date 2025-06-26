@@ -27,6 +27,8 @@ EXPOSE 8000
 ARG SECRET_KEY
 ENV SECRET_KEY=$SECRET_KEY
 
+RUN mkdir -p /app/staticfiles
+
 # Commande de démarrage (avec gunicorn en production)
 CMD python manage.py migrate && python manage.py collectstatic --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 2 --log-level info
 

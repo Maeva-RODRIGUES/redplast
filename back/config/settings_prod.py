@@ -13,18 +13,15 @@ else:
 SECRET_KEY = config('SECRET_KEY')
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
-database_url = config('DATABASE_URL', default=None)
-if not database_url:
+DATABASE_URL = config('DATABASE_URL', default=None)
+if not DATABASE_URL:
     raise Exception("DATABASE_URL not set in environment or .env.production")
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', default=None),
-        engine='mysql.connector.django',
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
+    'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, conn_health_checks=True)
 }
+# Override ENGINE explicitly if needed
+DATABASES['default']['ENGINE'] = 'mysql.connector.django'
 
 DEBUG = False
 

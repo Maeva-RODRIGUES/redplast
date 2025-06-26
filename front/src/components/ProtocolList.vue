@@ -136,7 +136,7 @@ function handleEdit(protocol) {
 
 const loadProtocols = async () => {
   try {
-    const response = await axios.get('http://127.0.0.1:8000/api/protocols/')
+    const response = await axios.get('https://redplastback-production.up.railway.app/api/protocols/')
     protocols.value = response.data
   } catch (error) {
     console.error('Erreur de récupération :', error)

@@ -51,11 +51,11 @@
 
 ### **Découvrez l'application en action !**
 
-👉 **[Voir la démo](https://lien-de-ta-demo.vercel.app)**
+👉 **[Voir la démo][https://redplast.netlify.app/]**
 
 *Testez toutes les fonctionnalités directement dans votre navigateur*
 
-[![Demo Screenshot](https://via.placeholder.com/600x300/991b1b/ffffff?text=🖥️+DEMO+INTERACTIVE)](https://lien-de-ta-demo.vercel.app)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/576fec4a-28c1-4cda-9da6-92c12cdf9bad/deploy-status)](https://app.netlify.com/projects/redplast/deploys)
 
 **💡 Astuce :** N'oubliez pas de cliquer sur **"Proposer un protocole"** pour découvrir la surprise ! 🎭
 

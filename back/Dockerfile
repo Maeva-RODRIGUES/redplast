@@ -21,7 +21,7 @@ RUN pip install -r requirements.txt
 # Copier tout le projet dans le container
 COPY . /app/
 
-# Expose le port (à adapter si besoin)
+# Expose le port
 EXPOSE 8000
 
 ARG SECRET_KEY

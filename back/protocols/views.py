@@ -3,12 +3,20 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Protocol
 from .serializers import ProtocolSerializer
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 
+class ReadCreateOnlyPermission(BasePermission):
+    def has_permission(self, request, view):
+        return request.method in SAFE_METHODS or request.method == 'POST'
+
+    def has_object_permission(self, request, view, obj):
+        return request.method in SAFE_METHODS or request.method == 'POST'
 
 class ProtocolViewSet(viewsets.ModelViewSet):
     queryset = Protocol.objects.all()
     serializer_class = ProtocolSerializer
-    permission_classes = [permissions.AllowAny]  
+    # permission_classes = [permissions.AllowAny]  
+    permission_classes = [ReadCreateOnlyPermission] 
     
     def perform_create(self, serializer):
         serializer.save()

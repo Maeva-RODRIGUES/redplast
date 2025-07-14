@@ -20,7 +20,7 @@ if not DATABASE_URL:
 DATABASES = {
     'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, conn_health_checks=True)
 }
-# Override ENGINE explicitly if needed
+
 DATABASES['default']['ENGINE'] = 'mysql.connector.django'
 
 DEBUG = False

@@ -93,6 +93,8 @@ function onProtocolUpdated() {
         <div class="text-center text-neutral/60 text-sm">
           <p>&copy; 2025 Redplast - Université de Bordeaux. Projet de recherche pour la réduction du plastique en laboratoire.</p>
           <p>Conçu avec ❤️ par Maëva Rodrigues</p>
+          <p class="italic text-gray-500">
+           *Projet réalisé à titre personnel, et n’a aucun lien avec le projet officiel "REDPLAST" de l'Université de Bordeaux - OASU.</p>
         </div>
       </div>
     </footer>
